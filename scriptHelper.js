@@ -81,20 +81,29 @@ function formSubmission(document/*, list*/, pilot, copilot, fuelLevel, cargoLeve
     // Check that the inputs allow for launch
     // https://education.launchcode.org/intro-to-professional-web-dev/assignments/launch-checklist.html#updating-shuttle-requirements
 
-    // Fuel level is too low
+    // Set Status Names
+    // <li id="pilotStatus" data-testid="pilotStatus">Pilot Ready</li>
+    document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
+    document.getElementById("copilotStatus").innerHTML = `Co-Pilot ${copilot} is ready for launch`;
+
+    // Check Fuel Level
     if (fuelLevel < 10000) {
         document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch"; // edits the info title (needs to be red if fails, green if ready for launch)
-        document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch." // <10,000
+        document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch."; // <10,000
         document.getElementById("launchStatus").style.color = "red";
         document.getElementById("faultyItems").style.visibility = "visible";
+    } else {
+        document.getElementById("fuelStatus").innerHTML = "Fuel level OK"; // >10,000
     }
 
-    // Cargo mass is too high
+    // Check Cargo Mass
     if (cargoLevel > 10000) {
         document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch"; // edits the info title (needs to be red if fails, green if ready for launch)
-        document.getElementById("cargoStatus").innerHTML = "Too much mass for launch." // > 10,000
+        document.getElementById("cargoStatus").innerHTML = "Cargo weight too high for launch." // > 10,000
         document.getElementById("launchStatus").style.color = "red";
         document.getElementById("faultyItems").style.visibility = "visible";
+    } else {
+        document.getElementById("cargoStatus").innerHTML = "Cargo weight OK" // > 10,000
     }
 
     // Inputs ok and ready for launch
