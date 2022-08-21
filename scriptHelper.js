@@ -1,12 +1,12 @@
 // Write your helper functions here!
 require('isomorphic-fetch');
 
-// Fetch planet JSON file UNCOMMENT WITH INTERNET
+// Fetch planet JSON file
 async function myFetch() {
-//     let planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
-//         return response.json();
-//     });
-//     return planetsReturned;
+    let planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
+        return response.json();
+    });
+    return planetsReturned;
 }
 
 // Take as a argument a list of planets, return one of them at random
@@ -71,23 +71,26 @@ function formSubmission(document/*, list*/, pilot, copilot, fuelLevel, cargoLeve
         errorText += "Cargo Level input invalid\n";
     }
 
-    // Display errors if they exist (UNCOMMENT WHEN DONE DEBUGGING)
+    // Display errors if they exist
     if (!(errorText === "")) {
-        // alert(errorText);
+        alert(errorText);
         console.log(errorText);
-        // break?
+        return
     }
 
     // Check that the inputs allow for launch
     // https://education.launchcode.org/intro-to-professional-web-dev/assignments/launch-checklist.html#updating-shuttle-requirements
 
-    // Set Status Names
+    // Set Names in Faulty Items
     // <li id="pilotStatus" data-testid="pilotStatus">Pilot Ready</li>
     document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
     document.getElementById("copilotStatus").innerHTML = `Co-Pilot ${copilot} is ready for launch`;
 
+    let fuelLevelMin = 10000;
+    let cargoLevelMax = 10000;
+
     // Check Fuel Level
-    if (fuelLevel < 10000) {
+    if (fuelLevel < fuelLevelMin) {
         document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch"; // edits the info title (needs to be red if fails, green if ready for launch)
         document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch."; // <10,000
         document.getElementById("launchStatus").style.color = "red";
@@ -97,7 +100,7 @@ function formSubmission(document/*, list*/, pilot, copilot, fuelLevel, cargoLeve
     }
 
     // Check Cargo Mass
-    if (cargoLevel > 10000) {
+    if (cargoLevel > cargoLevelMax) {
         document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch"; // edits the info title (needs to be red if fails, green if ready for launch)
         document.getElementById("cargoStatus").innerHTML = "Cargo weight too high for launch." // > 10,000
         document.getElementById("launchStatus").style.color = "red";
@@ -107,7 +110,7 @@ function formSubmission(document/*, list*/, pilot, copilot, fuelLevel, cargoLeve
     }
 
     // Inputs ok and ready for launch
-    if (fuelLevel > 10000 && cargoLevel < 10000) {
+    if (fuelLevel > fuelLevelMin && cargoLevel < cargoLevelMax) {
         document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch"; // edits the info title (needs to be red if fails, green if ready for launch)
         document.getElementById("launchStatus").style.color = "green"; // edits the info color (needs to be red if fails, green if ready for launch)
         document.getElementById("faultyItems").style.visibility = "hidden";
