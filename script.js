@@ -17,8 +17,7 @@ window.addEventListener("load", function () {
             formSubmission(document, pilotNameInput, copilotNameInput, fuelLevelInput, cargoMassInput); // list?
         });
 
-    }).then(function () {
-        console.log(listedPlanets);
+    //}).then(function (result) {
         // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
         // Destination Code
         listedPlanets = result;
