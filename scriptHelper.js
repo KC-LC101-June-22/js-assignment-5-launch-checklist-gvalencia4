@@ -38,7 +38,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 function validateInput(testInput) {
     if (testInput === "") {
         return "Empty";
-    } else if (isNaN()) {
+    } else if (isNaN(testInput)) {
         return "Not a Number"
     } else {
         return "Is a Number"
@@ -52,29 +52,29 @@ function formSubmission(document/*, list*/, pilot, copilot, fuelLevel, cargoLeve
     let errorText = "";
 
     // pilot
-    if (validateInput(pilot) === "Not a Number" || pilot === "") {
+    if (validateInput(pilot) === "Is a Number" || pilot === "") {
         errorText += "Pilot input invalid\n";
     }
 
     // copilot
-    if (validateInput(copilot) === "Not a Number" || copilot === "") {
+    if (validateInput(copilot) === "Is a Number" || copilot === "") {
         errorText += "Copilot input invalid\n";
     }
 
     // fuelLevel
-    if (validateInput(fuelLevel) === "Is a Number" || fuelLevel === "") {
+    if (validateInput(fuelLevel) === "Not a Number" || fuelLevel === "") {
         errorText += "Fuel Value input invalid\n";
     }
 
     // cargoLevel
-    if (validateInput(cargoLevel) === "Is a Number" || cargoLevel === "") {
+    if (validateInput(cargoLevel) === "Not a Number" || cargoLevel === "") {
         errorText += "Cargo Level input invalid\n";
     }
 
-    // Display errors if they exist
-    if (!errorText === "") {
-        errorText += "All fields are required!\n";
-        alert(errorText);
+    // Display errors if they exist (UNCOMMENT WHEN DONE DEBUGGING)
+    if (!(errorText === "")) {
+        // alert(errorText);
+        console.log(errorText);
         // break?
     }
 
