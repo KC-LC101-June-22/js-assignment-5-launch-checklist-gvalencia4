@@ -73,7 +73,7 @@ function formSubmission(document/*, list*/, pilot, copilot, fuelLevel, cargoLeve
 
     // Display errors if they exist
     if (!(errorText === "")) {
-        //window.alert(errorText);
+        alert(errorText);
         console.log(errorText);
         return
     }
