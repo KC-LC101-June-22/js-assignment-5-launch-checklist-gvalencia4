@@ -110,7 +110,7 @@ function formSubmission(document/*, list*/, pilot, copilot, fuelLevel, cargoLeve
     }
 
     // Inputs ok and ready for launch
-    if (fuelLevel > fuelLevelMin && cargoLevel < cargoLevelMax) {
+    if (fuelLevel >= fuelLevelMin && cargoLevel <= cargoLevelMax) {
         document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch"; // edits the info title (needs to be red if fails, green if ready for launch)
         document.getElementById("launchStatus").style.color = "green"; // edits the info color (needs to be red if fails, green if ready for launch)
         document.getElementById("faultyItems").style.visibility = "hidden";
